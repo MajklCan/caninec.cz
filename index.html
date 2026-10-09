@@ -238,7 +238,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   .photo-grid { grid-template-columns: 1fr 1fr; gap: 13px; }
   .photo-card { padding: 6px 6px 0; }
   .photo-caption { font-size: 9px; gap: 5px; min-height: 43px; padding: 8px 1px; }
-  .photo-caption > :last-child { display: none; }
+  .photo-caption { flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; }
   .photo-frame { aspect-ratio: 4 / 5; }
   .window-note { font-size: 8px; }
   .project-card { gap: 14px; padding: 16px 13px; }
@@ -408,134 +408,133 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     <div class="window-body">
       <section id="panel-photos" class="panel" aria-label="Photographs" hidden>
         <div id="photo-grid-view">
-          <div class="panel-heading"><div><p class="eyebrow">a few things worth keeping</p><h3>Little moments, mostly outside.</h3></div><span class="item-count">31 items</span></div>
+          <div class="panel-heading"><div><p class="eyebrow">newest first</p><h3>2021 – 2026</h3></div><span class="item-count">31 photos</span></div>
           <div class="photo-grid">
-            <button type="button" class="photo-card" data-photo="0" data-title="Ocean palms" data-description="2026" data-full="photos/full/2026-01-23_14-19.webp" aria-label="View Ocean palms">
+            <button type="button" class="photo-card" data-photo="0" data-title="jan 2026" data-description="" data-full="photos/full/2026-01-23_14-19.webp" aria-label="View photo 1, jan 2026">
               <span class="photo-frame"><img src="photos/thumb/2026-01-23_14-19.webp" alt="Palm trees leaning over a rocky turquoise coast." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>ocean palms</span><span>01</span></span>
+              <span class="photo-caption"><span></span><span>jan 2026</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="1" data-title="Frost" data-description="2025" data-full="photos/full/2025-12-26_14-05.webp" aria-label="View Frost">
+            <button type="button" class="photo-card" data-photo="1" data-title="dec 2025" data-description="" data-full="photos/full/2025-12-26_14-05.webp" aria-label="View photo 2, dec 2025">
               <span class="photo-frame"><img src="photos/thumb/2025-12-26_14-05.webp" alt="A frosty hilltop with a spruce tree and a misty valley below." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>frost</span><span>02</span></span>
+              <span class="photo-caption"><span></span><span>dec 2025</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="2" data-title="Coffee break" data-description="2025" data-full="photos/full/2025-11-08_13-20.webp" aria-label="View Coffee break">
+            <button type="button" class="photo-card" data-photo="2" data-title="nov 2025" data-description="" data-full="photos/full/2025-11-08_13-20.webp" aria-label="View photo 3, nov 2025">
               <span class="photo-frame"><img src="photos/thumb/2025-11-08_13-20.webp" alt="A cup of coffee on a red table in the sun." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>coffee break</span><span>03</span></span>
+              <span class="photo-caption"><span></span><span>nov 2025</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="3" data-title="Leaves" data-description="2025" data-full="photos/full/2025-03-23_14-05.webp" aria-label="View Leaves">
+            <button type="button" class="photo-card" data-photo="3" data-title="mar 2025" data-description="" data-full="photos/full/2025-03-23_14-05.webp" aria-label="View photo 4, mar 2025">
               <span class="photo-frame"><img src="photos/thumb/2025-03-23_14-05.webp" alt="Bright green tropical leaves in sunlight." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>leaves</span><span>04</span></span>
+              <span class="photo-caption"><span></span><span>mar 2025</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="4" data-title="Winter light" data-description="2024" data-full="photos/full/2024-12-25_15-27.webp" aria-label="View Winter light">
+            <button type="button" class="photo-card" data-photo="4" data-title="dec 2024" data-description="" data-full="photos/full/2024-12-25_15-27.webp" aria-label="View photo 5, dec 2024">
               <span class="photo-frame"><img src="photos/thumb/2024-12-25_15-27.webp" alt="Frosty fields and a lone house in low winter sun." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>winter light</span><span>05</span></span>
+              <span class="photo-caption"><span></span><span>dec 2024</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="5" data-title="Mountain bar" data-description="2024" data-full="photos/full/2024-12-21_15-17.webp" aria-label="View Mountain bar">
+            <button type="button" class="photo-card" data-photo="5" data-title="dec 2024" data-description="" data-full="photos/full/2024-12-21_15-17.webp" aria-label="View photo 6, dec 2024">
               <span class="photo-frame"><img src="photos/thumb/2024-12-21_15-17.webp" alt="A dim bar with tall windows looking out at snowy mountains." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>mountain bar</span><span>06</span></span>
+              <span class="photo-caption"><span></span><span>dec 2024</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="6" data-title="Balconies in green" data-description="2024" data-full="photos/full/2024-08-31_17-09.webp" aria-label="View Balconies in green">
+            <button type="button" class="photo-card" data-photo="6" data-title="aug 2024" data-description="" data-full="photos/full/2024-08-31_17-09.webp" aria-label="View photo 7, aug 2024">
               <span class="photo-frame"><img src="photos/thumb/2024-08-31_17-09.webp" alt="An ornate yellow building with balconies behind summer trees." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>balconies in green</span><span>07</span></span>
+              <span class="photo-caption"><span></span><span>aug 2024</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="7" data-title="Summer meadow" data-description="2024" data-full="photos/full/2024-07-20_19-19.webp" aria-label="View Summer meadow">
+            <button type="button" class="photo-card" data-photo="7" data-title="jul 2024" data-description="" data-full="photos/full/2024-07-20_19-19.webp" aria-label="View photo 8, jul 2024">
               <span class="photo-frame"><img src="photos/thumb/2024-07-20_19-19.webp" alt="A sunny meadow seen through trees at the edge of a forest." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>summer meadow</span><span>08</span></span>
+              <span class="photo-caption"><span></span><span>jul 2024</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="8" data-title="Bay bridge" data-description="san francisco, 2024" data-full="photos/full/2024-03-13_13-47.webp" aria-label="View Bay bridge">
+            <button type="button" class="photo-card" data-photo="8" data-title="san francisco" data-description="mar 2024" data-full="photos/full/2024-03-13_13-47.webp" aria-label="View photo 9, san francisco, mar 2024">
               <span class="photo-frame"><img src="photos/thumb/2024-03-13_13-47.webp" alt="Rooftops and palm trees with the Bay Bridge in the distance." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>bay bridge</span><span>09</span></span>
+              <span class="photo-caption"><span>san francisco</span><span>mar 2024</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="9" data-title="Campanile" data-description="venice, 2024" data-full="photos/full/2024-02-04_15-23.webp" aria-label="View Campanile">
+            <button type="button" class="photo-card" data-photo="9" data-title="venice" data-description="feb 2024" data-full="photos/full/2024-02-04_15-23.webp" aria-label="View photo 10, venice, feb 2024">
               <span class="photo-frame"><img src="photos/thumb/2024-02-04_15-23.webp" alt="A narrow street of orange houses leading to a bell tower." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>campanile</span><span>10</span></span>
+              <span class="photo-caption"><span>venice</span><span>feb 2024</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="10" data-title="The tower" data-description="prague, 2023" data-full="photos/full/2023-11-20_15-44.webp" aria-label="View The tower">
+            <button type="button" class="photo-card" data-photo="10" data-title="prague" data-description="nov 2023" data-full="photos/full/2023-11-20_15-44.webp" aria-label="View photo 11, prague, nov 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-11-20_15-44.webp" alt="Red rooftops of Prague with the Žižkov tower on the skyline." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>the tower</span><span>11</span></span>
+              <span class="photo-caption"><span>prague</span><span>nov 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="11" data-title="From above" data-description="new york, 2023" data-full="photos/full/2023-08-23_15-59.webp" aria-label="View From above">
+            <button type="button" class="photo-card" data-photo="11" data-title="new york" data-description="aug 2023" data-full="photos/full/2023-08-23_15-59.webp" aria-label="View photo 12, new york, aug 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-08-23_15-59.webp" alt="Dense city blocks seen from high above." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>from above</span><span>12</span></span>
+              <span class="photo-caption"><span>new york</span><span>aug 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="12" data-title="The avenue" data-description="new york, 2023" data-full="photos/full/2023-08-22_19-35.webp" aria-label="View The avenue">
+            <button type="button" class="photo-card" data-photo="12" data-title="new york" data-description="aug 2023" data-full="photos/full/2023-08-22_19-35.webp" aria-label="View photo 13, new york, aug 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-08-22_19-35.webp" alt="Skyscrapers lining a long avenue at sunset." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>the avenue</span><span>13</span></span>
+              <span class="photo-caption"><span>new york</span><span>aug 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="13" data-title="Two spires" data-description="prague, 2023" data-full="photos/full/2023-06-11_18-08.webp" aria-label="View Two spires">
+            <button type="button" class="photo-card" data-photo="13" data-title="prague" data-description="jun 2023" data-full="photos/full/2023-06-11_18-08.webp" aria-label="View photo 14, prague, jun 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-06-11_18-08.webp" alt="Twin church spires rising between ornate apartment buildings." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>two spires</span><span>14</span></span>
+              <span class="photo-caption"><span>prague</span><span>jun 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="14" data-title="The boulevard" data-description="budapest, 2023" data-full="photos/full/2023-04-23_14-32.webp" aria-label="View The boulevard">
+            <button type="button" class="photo-card" data-photo="14" data-title="budapest" data-description="apr 2023" data-full="photos/full/2023-04-23_14-32.webp" aria-label="View photo 15, budapest, apr 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-04-23_14-32.webp" alt="A wide tree-lined boulevard with tram tracks and grand facades." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>the boulevard</span><span>15</span></span>
+              <span class="photo-caption"><span>budapest</span><span>apr 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="15" data-title="Window plant" data-description="2023" data-full="photos/full/2023-04-12_09-38.webp" aria-label="View Window plant">
+            <button type="button" class="photo-card" data-photo="15" data-title="apr 2023" data-description="" data-full="photos/full/2023-04-12_09-38.webp" aria-label="View photo 16, apr 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-04-12_09-38.webp" alt="A leafy plant in a tall window overlooking rooftops." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>window plant</span><span>16</span></span>
+              <span class="photo-caption"><span></span><span>apr 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="16" data-title="Old and new" data-description="dublin, 2023" data-full="photos/full/2023-03-11_18-30.webp" aria-label="View Old and new">
+            <button type="button" class="photo-card" data-photo="16" data-title="dublin" data-description="mar 2023" data-full="photos/full/2023-03-11_18-30.webp" aria-label="View photo 17, dublin, mar 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-03-11_18-30.webp" alt="A stone gothic church beside a glass office building." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>old and new</span><span>17</span></span>
+              <span class="photo-caption"><span>dublin</span><span>mar 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="17" data-title="Above the lake" data-description="como, 2023" data-full="photos/full/2023-01-22_16-20.webp" aria-label="View Above the lake">
+            <button type="button" class="photo-card" data-photo="17" data-title="como" data-description="jan 2023" data-full="photos/full/2023-01-22_16-20.webp" aria-label="View photo 18, como, jan 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-01-22_16-20.webp" alt="A rooftop garden with hazy mountains behind it." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>above the lake</span><span>18</span></span>
+              <span class="photo-caption"><span>como</span><span>jan 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="18" data-title="Glass and light" data-description="2023" data-full="photos/full/2023-01-03_15-54.webp" aria-label="View Glass and light">
+            <button type="button" class="photo-card" data-photo="18" data-title="jan 2023" data-description="" data-full="photos/full/2023-01-03_15-54.webp" aria-label="View photo 19, jan 2023">
               <span class="photo-frame"><img src="photos/thumb/2023-01-03_15-54.webp" alt="Glass office towers catching late sunlight." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>glass and light</span><span>19</span></span>
+              <span class="photo-caption"><span></span><span>jan 2023</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="19" data-title="Palms and terraces" data-description="tenerife, 2022" data-full="photos/full/2022-09-10_17-17.webp" aria-label="View Palms and terraces">
+            <button type="button" class="photo-card" data-photo="19" data-title="tenerife" data-description="sep 2022" data-full="photos/full/2022-09-10_17-17.webp" aria-label="View photo 20, tenerife, sep 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-09-10_17-17.webp" alt="Palm fronds in front of a white terraced building." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>palms and terraces</span><span>20</span></span>
+              <span class="photo-caption"><span>tenerife</span><span>sep 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="20" data-title="Balconies" data-description="tenerife, 2022" data-full="photos/full/2022-09-10_17-16.webp" aria-label="View Balconies">
+            <button type="button" class="photo-card" data-photo="20" data-title="tenerife" data-description="sep 2022" data-full="photos/full/2022-09-10_17-16.webp" aria-label="View photo 21, tenerife, sep 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-09-10_17-16.webp" alt="White hotel balconies and a glass pyramid among palm trees." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>balconies</span><span>21</span></span>
+              <span class="photo-caption"><span>tenerife</span><span>sep 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="21" data-title="Red accent" data-description="prague, 2022" data-full="photos/full/2022-08-29_12-34.webp" aria-label="View Red accent">
+            <button type="button" class="photo-card" data-photo="21" data-title="prague" data-description="aug 2022" data-full="photos/full/2022-08-29_12-34.webp" aria-label="View photo 22, prague, aug 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-08-29_12-34.webp" alt="A tall red sculpture between brick and glass office buildings." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>red accent</span><span>22</span></span>
+              <span class="photo-caption"><span>prague</span><span>aug 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="22" data-title="Under the glass roof" data-description="istanbul, 2022" data-full="photos/full/2022-08-04_10-52.webp" aria-label="View Under the glass roof">
+            <button type="button" class="photo-card" data-photo="22" data-title="istanbul" data-description="aug 2022" data-full="photos/full/2022-08-04_10-52.webp" aria-label="View photo 23, istanbul, aug 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-08-04_10-52.webp" alt="A busy covered market street with clothes hanging under a glass roof." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>under the glass roof</span><span>23</span></span>
+              <span class="photo-caption"><span>istanbul</span><span>aug 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="23" data-title="Pink hour" data-description="copenhagen, 2022" data-full="photos/full/2022-06-19_22-12.webp" aria-label="View Pink hour">
+            <button type="button" class="photo-card" data-photo="23" data-title="copenhagen" data-description="jun 2022" data-full="photos/full/2022-06-19_22-12.webp" aria-label="View photo 24, copenhagen, jun 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-06-19_22-12.webp" alt="Brick industrial buildings under a pink evening sky." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>pink hour</span><span>24</span></span>
+              <span class="photo-caption"><span>copenhagen</span><span>jun 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="24" data-title="Still water" data-description="copenhagen, 2022" data-full="photos/full/2022-06-19_20-58.webp" aria-label="View Still water">
+            <button type="button" class="photo-card" data-photo="24" data-title="copenhagen" data-description="jun 2022" data-full="photos/full/2022-06-19_20-58.webp" aria-label="View photo 25, copenhagen, jun 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-06-19_20-58.webp" alt="A brick power station with three chimneys mirrored in calm water." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>still water</span><span>25</span></span>
+              <span class="photo-caption"><span>copenhagen</span><span>jun 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="25" data-title="White grid" data-description="copenhagen, 2022" data-full="photos/full/2022-06-19_19-45.webp" aria-label="View White grid">
+            <button type="button" class="photo-card" data-photo="25" data-title="copenhagen" data-description="jun 2022" data-full="photos/full/2022-06-19_19-45.webp" aria-label="View photo 26, copenhagen, jun 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-06-19_19-45.webp" alt="A white grid facade cutting diagonally across a blue sky." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>white grid</span><span>26</span></span>
+              <span class="photo-caption"><span>copenhagen</span><span>jun 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="26" data-title="Copper lines" data-description="copenhagen, 2022" data-full="photos/full/2022-06-19_19-15.webp" aria-label="View Copper lines">
+            <button type="button" class="photo-card" data-photo="26" data-title="copenhagen" data-description="jun 2022" data-full="photos/full/2022-06-19_19-15.webp" aria-label="View photo 27, copenhagen, jun 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-06-19_19-15.webp" alt="A copper-toned modern facade and a slatted walkway under clouds." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>copper lines</span><span>27</span></span>
+              <span class="photo-caption"><span>copenhagen</span><span>jun 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="27" data-title="Cream facades" data-description="málaga, 2022" data-full="photos/full/2022-02-09_10-50.webp" aria-label="View Cream facades">
+            <button type="button" class="photo-card" data-photo="27" data-title="málaga" data-description="feb 2022" data-full="photos/full/2022-02-09_10-50.webp" aria-label="View photo 28, málaga, feb 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-02-09_10-50.webp" alt="Cream-coloured apartment buildings against a deep blue sky." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>cream facades</span><span>28</span></span>
+              <span class="photo-caption"><span>málaga</span><span>feb 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="28" data-title="The rock" data-description="andalusia, 2022" data-full="photos/full/2022-02-08_12-08.webp" aria-label="View The rock">
+            <button type="button" class="photo-card" data-photo="28" data-title="andalusia" data-description="feb 2022" data-full="photos/full/2022-02-08_12-08.webp" aria-label="View photo 29, andalusia, feb 2022">
               <span class="photo-frame"><img src="photos/thumb/2022-02-08_12-08.webp" alt="A quiet beach and a dry hillside with the Rock of Gibraltar on the horizon." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>the rock</span><span>29</span></span>
+              <span class="photo-caption"><span>andalusia</span><span>feb 2022</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="29" data-title="Golden hour" data-description="north bohemia, 2021" data-full="photos/full/2021-10-09_18-07.webp" aria-label="View Golden hour">
+            <button type="button" class="photo-card" data-photo="29" data-title="ústí nad labem" data-description="oct 2021" data-full="photos/full/2021-10-09_18-07.webp" aria-label="View photo 30, ústí nad labem, oct 2021">
               <span class="photo-frame"><img src="photos/thumb/2021-10-09_18-07.webp" alt="Low sun over a grassy meadow, framed by leaves." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>golden hour</span><span>30</span></span>
+              <span class="photo-caption"><span>ústí nad labem</span><span>oct 2021</span></span>
             </button>
-            <button type="button" class="photo-card" data-photo="30" data-title="Green hills" data-description="spring, 2021" data-full="photos/full/2021-05-08_17-04.webp" aria-label="View Green hills">
+            <button type="button" class="photo-card" data-photo="30" data-title="may 2021" data-description="" data-full="photos/full/2021-05-08_17-04.webp" aria-label="View photo 31, may 2021">
               <span class="photo-frame"><img src="photos/thumb/2021-05-08_17-04.webp" alt="Rolling green hills with blossoming trees under a wide blue sky." width="560" height="700" loading="lazy" decoding="async"></span>
-              <span class="photo-caption"><span>green hills</span><span>31</span></span>
+              <span class="photo-caption"><span></span><span>may 2021</span></span>
             </button>
           </div>
-          <p class="window-note">shot on a phone · 2021 → 2026 · newest first</p>
         </div>
         <div id="photo-detail" hidden>
           <div class="detail-toolbar"><button class="text-button" id="all-photos" type="button">← all photos</button><span id="photo-number" class="item-count">01 / 31</span></div>
@@ -875,7 +874,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     currentPhoto = null;
     $("#photo-grid-view").hidden = false;
     $("#photo-detail").hidden = true;
-    setWindowStatus(`${photos.length} items · newest first`);
+    setWindowStatus(`${photos.length} photos`);
     windowBody.scrollTop = 0;
     if (restoreFocus && previous !== null) photoButtons[previous].focus();
   }
@@ -906,7 +905,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     $("#photo-number").textContent = `${String(currentPhoto + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
     $("#photo-grid-view").hidden = true;
     $("#photo-detail").hidden = false;
-    setWindowStatus(`${photo.description} · ← → to browse`);
+    setWindowStatus("← → to browse");
     windowBody.scrollTop = 0;
     if (moveFocus) $("#all-photos").focus();
   }
