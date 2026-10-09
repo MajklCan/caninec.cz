@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ede8d7">
-  <meta name="description" content="A quieter corner of the internet. Photographs, small projects, and a sunny view of a better tomorrow.">
+  <meta name="description" content="A quieter corner of the internet. Photographs, a short profile, and a sunny view of a better tomorrow.">
   <title>a quieter corner — a little sunlight</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232e4538'/%3E%3Cpath d='M10 48V18h18l5 6h21v24Z' fill='%23fae9bf' stroke='%231c2c23' stroke-width='2'/%3E%3Cpath d='M10 27h44' stroke='%23b2a688' stroke-width='2'/%3E%3C/svg%3E">
   <style>
@@ -120,13 +120,16 @@ body.is-still .pause-icon { display: none; }
 
 .corner--thought { bottom: max(29px, env(safe-area-inset-bottom)); right: max(38px, env(safe-area-inset-right)); text-align: right; font-size: 11px; }
 .corner--thought .corner-rule { margin-top: 1px; }
+.balance-progress { display: block; width: 58px; height: 7px; margin: 8px 0 0 auto; padding: 1px; border: 1px solid currentColor; opacity: .75; }
+.balance-progress > span { display: block; width: 0; height: 100%; background: currentColor; animation: balance-fill 5.6s steps(8, end) infinite; }
+@keyframes balance-fill { 0% { width: 0; } 80%, 100% { width: 100%; } }
+body.is-still .balance-progress > span { animation-play-state: paused; }
 
 /* Native modal dialog supplies focus trapping and a properly inert desktop. */
 .desktop-window { position: fixed; padding: 0; width: min(760px, calc(100vw - 72px)); max-width: none; max-height: calc(100dvh - 76px); border: 1.5px solid #495344; border-radius: 3px; background: var(--paper); color: var(--ink); box-shadow: 6px 7px 0 #263a343b, 0 25px 100px #1b33234a; overflow: hidden; }
 .desktop-window[open] { display: flex; flex-direction: column; animation: open-window 190ms ease-out; }
 .desktop-window::backdrop { background: #283c273d; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
-.desktop-window[data-folder="projects"] { width: min(700px, calc(100vw - 72px)); }
-.desktop-window[data-folder="untitled"] { width: min(460px, calc(100vw - 72px)); }
+.desktop-window[data-folder="profile"] { width: min(600px, calc(100vw - 72px)); }
 @keyframes open-window { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .window-bar { display: flex; flex: 0 0 auto; align-items: center; gap: 11px; min-height: 43px; padding: 6px 9px 6px 16px; border-bottom: 1px solid #a1a990; background: #e6e7d4; box-shadow: inset 0 1px #fffff2; user-select: none; }
 .tiny-folder { flex-shrink: 0; shape-rendering: crispEdges; }
@@ -184,6 +187,21 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
 .about-copy { color: #78816a; font-size: 12px; line-height: 1.95; margin-bottom: 13px; max-width: 57ch; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 4px; }
 .project-tags span { padding: 5px 8px; border: 1px solid #d7dec5; font-size: 9px; color: #7a856b; }
+/* profile.md — shown as lightly rendered markdown, the syntax marks stay visible. */
+a.folder { text-decoration: none; color: inherit; }
+a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
+.folder-label .link-arrow { margin-left: 3px; font-size: 10px; opacity: .7; }
+.md-doc { padding: 30px 34px 26px; font-size: 12px; line-height: 1.95; }
+.md-mark { color: #a9ad95; }
+.md-doc h3 { margin-bottom: 4px; }
+.md-quote { color: var(--muted); font-size: 11px; margin-bottom: 6px; }
+.md-doc h4 { margin: 22px 0 4px; color: #586f4e; font-size: 13px; font-weight: 400; letter-spacing: .2px; }
+.md-doc ul { margin: 0; padding: 0; list-style: none; }
+.md-doc li { color: #6f7862; }
+.md-doc a { color: #3e5945; text-decoration: underline; text-decoration-color: #b3bf9f; text-underline-offset: 4px; }
+.md-doc a:hover { color: #233e24; text-decoration-color: currentColor; }
+.md-cursor { display: inline-block; width: 7px; height: 13px; margin-top: 18px; background: #6f8657; animation: md-blink 1.1s steps(1) infinite; }
+@keyframes md-blink { 50% { opacity: 0; } }
 .empty-folder { padding: 40px 25px 33px; text-align: center; }
 .empty-icon { width: 91px; height: 91px; margin: 2px auto 28px; display: grid; place-items: center; border: 1px dashed #c1ceb0; border-radius: 50%; background: #e7ebd8; }
 .empty-icon svg { shape-rendering: crispEdges; }
@@ -211,7 +229,7 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
   .light-toggle svg { width: 12px; height: 12px; }
   .motion-toggle { font-size: 9px; gap: 6px; }
   .corner--thought { bottom: max(23px, env(safe-area-inset-bottom)); right: 23px; font-size: 9px; }
-  .desktop-window, .desktop-window[data-folder="projects"], .desktop-window[data-folder="untitled"] { width: calc(100vw - 32px); max-height: calc(100dvh - 46px); }
+  .desktop-window, .desktop-window[data-folder="profile"] { width: calc(100vw - 32px); max-height: calc(100dvh - 46px); }
   .panel { padding: 23px 20px 17px; }
   .panel-heading { margin-bottom: 21px; align-items: flex-start; }
   .panel-heading .item-count { padding-top: 2px; }
@@ -235,6 +253,7 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
   .photo-arrows { gap: 5px; }
   .square-button { width: 30px; height: 32px; }
   .empty-folder { padding: 34px 24px 30px; }
+  .md-doc { padding: 24px 20px 20px; }
 }
 @media (max-width: 380px) {
   .corner--intro { left: 18px; }
@@ -253,9 +272,11 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
   .folders { top: 46%; }
   .folder { min-height: 89px; }
   .folder-icon { width: 58px; height: 49px; }
-  .desktop-window, .desktop-window[data-folder="projects"], .desktop-window[data-folder="untitled"] { max-height: calc(100dvh - 30px); }
+  .desktop-window, .desktop-window[data-folder="profile"] { max-height: calc(100dvh - 30px); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .md-cursor { animation: none; }
+  .balance-progress > span { animation: none; width: 62%; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
 
@@ -296,6 +317,24 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
         <path d="M6 20H65M6 21V50" fill="none" stroke="#fffaf0" stroke-width="1.7"/>
         <path d="M7 51H66" fill="none" stroke="#d7c49d" stroke-width="1.1"/>
       </symbol>
+      <linearGradient id="file-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fffaf0"/>
+        <stop offset="1" stop-color="#f1e6c8"/>
+      </linearGradient>
+      <symbol id="file-art" viewBox="0 0 72 60">
+        <path d="M19 58V8H50L59 17V58Z" fill="#3f4536" opacity=".16"/>
+        <path d="M15 55V4H46L56 14V55Z" fill="url(#file-fill)" stroke="#40463c" stroke-width="1.8"/>
+        <path d="M46 4V14H56" fill="#dcd1b1" stroke="#40463c" stroke-width="1.8"/>
+        <path d="M18 52V7H43" fill="none" stroke="#fffdf6" stroke-width="1.7"/>
+        <path d="M21 19H33" stroke="#6f8657" stroke-width="3"/>
+        <path d="M21 27H49M21 33H44M21 39H49M21 45H38" stroke="#c9bc98" stroke-width="2"/>
+      </symbol>
+      <symbol id="linkedin-art" viewBox="0 0 72 60">
+        <path d="M18 9H59V12H62V54H59V57H18V54H15V12H18Z" fill="#3f4536" opacity=".16"/>
+        <path d="M15 5H55V8H58V50H55V53H15V50H12V8H15Z" fill="#0a66c2" stroke="#1d3550" stroke-width="1.8"/>
+        <path d="M16 9H53M16 9V48" fill="none" stroke="#4d97e0" stroke-width="1.7"/>
+        <path d="M19 14H26V21H19ZM19 24H26V45H19ZM30 24H36V27H46V30H49V45H43V31H36V45H30Z" fill="#fffaf0"/>
+      </symbol>
       <symbol id="close-art" viewBox="0 0 16 16">
         <path d="M4 4L12 12M12 4L4 12" fill="none" stroke="currentColor" stroke-width="1.5"/>
       </symbol>
@@ -319,23 +358,23 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
   </aside>
 
   <main>
-    <h1 class="sr-only">A quieter corner — photographs and projects</h1>
+    <h1 class="sr-only">A quieter corner — photographs and a profile</h1>
     <nav class="folders" aria-label="Explore this little corner">
       <button class="folder" type="button" data-open="photos" aria-haspopup="dialog" aria-controls="desktop-window">
         <span class="folder-glow" aria-hidden="true"></span>
         <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#folder-art"/></svg>
         <span class="folder-label">photos</span>
       </button>
-      <button class="folder" type="button" data-open="projects" aria-haspopup="dialog" aria-controls="desktop-window">
+      <button class="folder" type="button" data-open="profile" aria-haspopup="dialog" aria-controls="desktop-window">
         <span class="folder-glow" aria-hidden="true"></span>
-        <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#folder-art"/></svg>
-        <span class="folder-label">projects</span>
+        <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#file-art"/></svg>
+        <span class="folder-label">profile.md</span>
       </button>
-      <button class="folder folder--untitled" type="button" data-open="untitled" aria-haspopup="dialog" aria-controls="desktop-window" aria-label="Open the unnamed folder">
+      <a class="folder" href="https://www.linkedin.com/" target="_blank" rel="noopener me" aria-label="LinkedIn profile (opens in a new tab)">
         <span class="folder-glow" aria-hidden="true"></span>
-        <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#folder-art"/></svg>
-        <span class="folder-label" aria-hidden="true">&nbsp;</span>
-      </button>
+        <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#linkedin-art"/></svg>
+        <span class="folder-label">linkedin<span class="link-arrow" aria-hidden="true">↗</span></span>
+      </a>
     </nav>
   </main>
 
@@ -354,15 +393,15 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
         <span>sunlight</span>
       </button>
     </div>
-    <p class="corner corner--thought">nature<br>people<br>better tomorrows<span class="corner-rule" aria-hidden="true">—</span></p>
+    <p class="corner corner--thought">maintaining<br>work hike<br>balance<span class="balance-progress" aria-hidden="true"><span></span></span></p>
   </footer>
 
   <dialog class="desktop-window" id="desktop-window" aria-labelledby="window-title">
     <div class="window-bar">
-      <svg class="tiny-folder" width="23" height="20" aria-hidden="true"><use href="#folder-art"/></svg>
+      <svg class="tiny-folder" id="window-icon" width="23" height="20" aria-hidden="true"><use href="#folder-art"/></svg>
       <h2 id="window-title">photos</h2>
       <span class="window-lines" aria-hidden="true"></span>
-      <button class="window-close" id="window-close" type="button" aria-label="Close folder" title="Close (Esc)" autofocus>
+      <button class="window-close" id="window-close" type="button" aria-label="Close window" title="Close (Esc)" autofocus>
         <svg width="16" height="16" aria-hidden="true"><use href="#close-art"/></svg>
       </button>
     </div>
@@ -397,38 +436,25 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
         </div>
       </section>
 
-      <section id="panel-projects" class="panel" aria-label="Projects" hidden>
-        <div id="project-list">
-          <div class="panel-heading"><div><p class="eyebrow">made slowly, with curiosity</p><h3>A few things in progress.</h3></div><span class="item-count">02 items</span></div>
-          <button class="project-card" id="show-project" type="button" aria-label="Read about this website">
-            <span class="project-graphic" aria-hidden="true"><svg width="52" height="48"><use href="#folder-art"/></svg><span class="graphic-spark">✳</span></span>
-            <span class="project-copy"><span class="project-meta">01 / web experiment</span><span class="project-title">This little corner</span><span class="project-description">A small space for photos, side projects, and a better view.</span><span class="project-status"><span class="status-dot"></span>you're here</span></span>
-            <span class="project-arrow" aria-hidden="true">↗</span>
-          </button>
-          <div class="project-card project-card--placeholder">
-            <span class="project-graphic project-graphic--empty" aria-hidden="true"><svg width="45" height="45"><use href="#leaf-art"/></svg></span>
-            <div class="project-copy"><span class="project-meta">02 / an open space</span><h4 class="project-title">Something growing</h4><p class="project-description">No rush. There’s room here for the next idea.</p><span class="project-status">not quite ready yet</span></div>
-            <span class="project-arrow" aria-hidden="true">…</span>
-          </div>
-          <p class="window-note">demo projects · a place for your own work</p>
-        </div>
-        <div id="project-detail" hidden>
-          <div class="detail-toolbar"><button class="text-button" id="all-projects" type="button">← all projects</button><span class="item-count">01 / 02</span></div>
-          <div class="project-about-visual" aria-hidden="true"><svg width="83" height="72"><use href="#folder-art"/></svg><span>a quieter corner</span></div>
-          <p class="eyebrow">web experiment / personal space</p>
-          <h3 class="about-title">A website that takes a breath.</h3>
-          <p class="about-copy">A sunlit forest, a city tucked into the trees, and three little folders. Somewhere to collect the things you make and the things you notice.</p>
-          <p class="about-copy">Move your cursor and the view shifts just a little. Clouds drift, sunlight filters through the trees, and a few warm lens flares follow the light. The river catches the sun. Nothing needs your attention until you open a folder.</p>
-          <div class="project-tags"><span>HTML + CSS + JS</span><span>no trackers</span><span>offline friendly</span></div>
-        </div>
-      </section>
-
-      <section id="panel-untitled" class="panel empty-folder" aria-label="Unnamed folder" hidden>
-        <div class="empty-icon" aria-hidden="true"><svg width="54" height="54"><use href="#leaf-art"/></svg></div>
-        <p class="eyebrow">nothing here, just yet</p>
-        <h3>Still growing.</h3>
-        <p>An empty folder.<br>A little room for what comes next.</p>
-        <span class="empty-dots" aria-hidden="true">· &nbsp; · &nbsp; ·</span>
+      <section id="panel-profile" class="panel md-doc" aria-label="profile.md">
+        <h3><span class="md-mark" aria-hidden="true"># </span>Michal Caninec</h3>
+        <p class="md-quote"><span class="md-mark" aria-hidden="true">&gt; </span>just a quieter corner on the internet</p>
+        <h4><span class="md-mark" aria-hidden="true">## </span>about</h4>
+        <ul>
+          <li><span class="md-mark" aria-hidden="true">- </span>based in prague, czechia</li>
+          <li><span class="md-mark" aria-hidden="true">- </span>investment analyst</li>
+          <li><span class="md-mark" aria-hidden="true">- </span>builds small things with code &amp; ai on the side</li>
+        </ul>
+        <h4><span class="md-mark" aria-hidden="true">## </span>into</h4>
+        <ul>
+          <li><span class="md-mark" aria-hidden="true">- </span>nature, people, better tomorrows</li>
+          <li><span class="md-mark" aria-hidden="true">- </span>books &amp; long-term thinking</li>
+        </ul>
+        <h4><span class="md-mark" aria-hidden="true">## </span>elsewhere</h4>
+        <ul>
+          <li><span class="md-mark" aria-hidden="true">- [</span><a href="https://www.linkedin.com/" target="_blank" rel="noopener me">linkedin</a><span class="md-mark" aria-hidden="true">]</span></li>
+        </ul>
+        <span class="md-cursor" aria-hidden="true"></span>
       </section>
     </div>
     <div class="window-status"><span id="window-status-text">4 items</span><span>take your time <span aria-hidden="true">↟</span></span></div>
@@ -501,7 +527,6 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
   let pointer = { x: 0, y: 0 };
   let camera = { x: 0, y: 0 };
   let currentPhoto = null;
-  let projectDetailOpen = false;
   let clockInterval = null;
 
   // Deterministic pollen and water glints; generated once, not on every frame.
@@ -747,25 +772,15 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
     if (restoreFocus && previous !== null) photoButtons[previous].focus();
   }
 
-  function resetProjects(restoreFocus = false) {
-    projectDetailOpen = false;
-    $("#project-list").hidden = false;
-    $("#project-detail").hidden = true;
-    setWindowStatus("2 items · demo projects");
-    windowBody.scrollTop = 0;
-    if (restoreFocus) $("#show-project").focus();
-  }
-
   function openFolder(name) {
-    if (!["photos", "projects", "untitled"].includes(name)) return;
+    if (!["photos", "profile"].includes(name)) return;
     panels.forEach((panel) => { panel.hidden = panel.id !== `panel-${name}`; });
     dialog.dataset.folder = name;
-    $("#window-title").textContent = `~ / ${name}`;
+    $("#window-title").textContent = name === "profile" ? "~ / profile.md" : `~ / ${name}`;
+    $("#window-icon use").setAttribute("href", name === "profile" ? "#file-art" : "#folder-art");
     currentPhoto = null;
-    projectDetailOpen = false;
     if (name === "photos") resetPhotoGrid();
-    else if (name === "projects") resetProjects();
-    else setWindowStatus("0 items · all the possibilities");
+    else setWindowStatus("1 file · markdown");
     folderButtons.forEach((button) => button.setAttribute("aria-expanded", String(button.dataset.open === name)));
     pointer = { x: 0, y: 0 };
     if (!dialog.open) dialog.showModal();
@@ -797,25 +812,14 @@ button.project-card:hover { transform: translateY(-2px); border-color: #97aa83; 
   $("#all-photos").addEventListener("click", () => resetPhotoGrid(true));
   $("#previous-photo").addEventListener("click", () => showPhoto((currentPhoto ?? 0) - 1, false));
   $("#next-photo").addEventListener("click", () => showPhoto((currentPhoto ?? 0) + 1, false));
-  $("#all-projects").addEventListener("click", () => resetProjects(true));
-  $("#show-project").addEventListener("click", () => {
-    projectDetailOpen = true;
-    $("#project-list").hidden = true;
-    $("#project-detail").hidden = false;
-    setWindowStatus("this little corner · web experiment");
-    windowBody.scrollTop = 0;
-    $("#all-projects").focus();
-  });
 
   dialog.addEventListener("close", () => {
     folderButtons.forEach((button) => button.setAttribute("aria-expanded", "false"));
     currentPhoto = null;
-    projectDetailOpen = false;
   });
   dialog.addEventListener("cancel", (event) => {
     // Escape steps back inside a folder before closing the desktop window.
     if (currentPhoto !== null) { event.preventDefault(); resetPhotoGrid(true); }
-    else if (projectDetailOpen) { event.preventDefault(); resetProjects(true); }
   });
   function isOutsideDialog(event) {
     const r = dialog.getBoundingClientRect();
