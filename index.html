@@ -120,10 +120,14 @@ body.is-still .pause-icon { display: none; }
 
 .corner--thought { bottom: max(29px, env(safe-area-inset-bottom)); right: max(38px, env(safe-area-inset-right)); text-align: right; font-size: 11px; }
 .corner--thought .corner-rule { margin-top: 1px; }
-.balance-progress { display: block; width: 58px; height: 7px; margin: 8px 0 0 auto; padding: 1px; border: 1px solid currentColor; opacity: .75; }
-.balance-progress > span { display: block; width: 0; height: 100%; background: currentColor; animation: balance-fill 5.6s steps(8, end) infinite; }
-@keyframes balance-fill { 0% { width: 0; } 80%, 100% { width: 100%; } }
-body.is-still .balance-progress > span { animation-play-state: paused; }
+/* Inline braille spinner, a quiet terminal-style "still working on it". */
+.balance-spinner { display: inline-block; width: 1ch; text-align: left; }
+.balance-spinner::after { content: "⠋"; animation: balance-spin 1s steps(1, end) infinite; }
+@keyframes balance-spin {
+  0% { content: "⠋"; } 10% { content: "⠙"; } 20% { content: "⠹"; } 30% { content: "⠸"; } 40% { content: "⠼"; }
+  50% { content: "⠴"; } 60% { content: "⠦"; } 70% { content: "⠧"; } 80% { content: "⠇"; } 90% { content: "⠏"; }
+}
+body.is-still .balance-spinner::after { animation-play-state: paused; }
 
 /* Native modal dialog supplies focus trapping and a properly inert desktop. */
 .desktop-window { position: fixed; padding: 0; width: min(760px, calc(100vw - 72px)); max-width: none; max-height: calc(100dvh - 76px); border: 1.5px solid #495344; border-radius: 3px; background: var(--paper); color: var(--ink); box-shadow: 6px 7px 0 #263a343b, 0 25px 100px #1b33234a; overflow: hidden; }
@@ -132,6 +136,26 @@ body.is-still .balance-progress > span { animation-play-state: paused; }
 .desktop-window[data-folder="profile"] { width: min(600px, calc(100vw - 72px)); }
 .desktop-window[data-folder="photos"] { width: min(1040px, calc(100vw - 72px)); max-height: calc(100dvh - 48px); }
 #panel-photos { padding: 14px 14px 12px; }
+.desktop-window[data-viewing] { width: calc(100vw - 24px); height: calc(100dvh - 24px); max-height: none; }
+.desktop-window[data-viewing]::backdrop { background: #0c140fc7; backdrop-filter: blur(14px) saturate(.85); -webkit-backdrop-filter: blur(14px) saturate(.85); }
+.desktop-window[data-viewing] .window-body { display: flex; flex: 1; flex-direction: column; overflow: hidden; }
+.desktop-window[data-viewing] .window-status { display: none; }
+.desktop-window[data-viewing] #panel-photos { display: flex; flex: 1; flex-direction: column; min-height: 0; padding: 10px 12px 12px; }
+.desktop-window[data-viewing] #photo-detail { display: flex; flex: 1; flex-direction: column; min-height: 0; }
+.desktop-window[data-viewing] .detail-image-wrap { flex: 1; }
+/* Lightbox: the paper window dissolves, controls sit light-on-dark over the blurred backdrop. */
+.desktop-window[data-viewing] { background: transparent; border-color: transparent; box-shadow: none; color: #f1ecdc; }
+.desktop-window[data-viewing] .window-bar { background: transparent; border-bottom-color: transparent; box-shadow: none; }
+.desktop-window[data-viewing] .window-bar h2 { color: #e8e2cf; }
+.desktop-window[data-viewing] .window-lines { opacity: .18; }
+.desktop-window[data-viewing] .window-close { background: #f6f2e41f; border-color: #f6f2e440; color: #f1ecdc; box-shadow: none; }
+.desktop-window[data-viewing] .window-close:hover { background: #f6f2e433; }
+.desktop-window[data-viewing] .text-button { color: #d9dcc6; }
+.desktop-window[data-viewing] .text-button:hover { color: #fffaf0; }
+.desktop-window[data-viewing] .detail-caption p, .desktop-window[data-viewing] .item-count { color: #b9bca8; }
+.desktop-window[data-viewing] .square-button { background: #f6f2e41a; border-color: #f6f2e440; color: #f1ecdc; }
+.desktop-window[data-viewing] .square-button:hover { background: #f6f2e433; }
+.desktop-window[data-viewing] :focus-visible { outline-color: #f1ecdc; }
 #panel-photos .panel-heading { align-items: baseline; margin: 2px 4px 12px; }
 #panel-photos .panel-heading h3 { font-size: 14px; letter-spacing: 0; }
 @keyframes open-window { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -159,14 +183,15 @@ h3 { font-size: 20px; font-weight: 400; line-height: 1.4; letter-spacing: -.7px;
 .window-note { color: #868b75; font-size: 9px; line-height: 1.8; margin-top: 23px; }
 .window-status { display: flex; flex: 0 0 auto; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 17px; border-top: 1px solid #d5d8c4; color: #7a826e; font-size: 9px; letter-spacing: .15px; background: #eaeada; }
 .window-status > :last-child > span { padding-left: 4px; color: #6c8157; font-size: 13px; line-height: 1; }
-.detail-toolbar { display: flex; align-items: center; justify-content: space-between; margin: -4px 0 21px; }
+.detail-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 10px; }
 .text-button { border: 0; background: transparent; padding: 5px 0; color: #586f4e; font-size: 11px; }
 .text-button:hover { color: #233e24; text-decoration: underline; text-underline-offset: 4px; }
-.detail-image-wrap { background: #e8e7d5; border: 1px solid #d7d9c5; padding: 9px; }
-.detail-image { display: block; width: 100%; height: auto; max-height: 64dvh; object-fit: contain; }
-.detail-caption { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 21px 0 3px; }
-.detail-caption h3 { font-size: 16px; letter-spacing: -.2px; }
-.detail-caption p { margin-top: 7px; color: #7c826c; font-size: 10px; line-height: 1.8; }
+.detail-image-wrap { display: flex; align-items: center; justify-content: center; min-height: 0; }
+.detail-image { display: block; max-width: 100%; max-height: 100%; object-fit: contain; }
+.detail-caption { display: flex; align-items: baseline; gap: 10px; min-width: 0; }
+.detail-nav { display: flex; align-items: center; gap: 12px; }
+.detail-caption h3 { font-size: 14px; letter-spacing: 0; white-space: nowrap; }
+.detail-caption p { color: #7c826c; font-size: 10px; white-space: nowrap; }
 .photo-arrows { display: flex; flex-shrink: 0; gap: 7px; }
 .square-button { width: 32px; height: 32px; border: 1px solid #c4ccb1; background: #f9f6e9; font-size: 14px; }
 .square-button:hover { background: #e5e8d3; }
@@ -233,6 +258,8 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   .motion-toggle { font-size: 9px; gap: 6px; }
   .corner--thought { bottom: max(23px, env(safe-area-inset-bottom)); right: 23px; font-size: 9px; }
   .desktop-window, .desktop-window[data-folder="profile"], .desktop-window[data-folder="photos"] { width: calc(100vw - 32px); max-height: calc(100dvh - 46px); }
+  .desktop-window[data-viewing] { width: calc(100vw - 12px); height: calc(100dvh - 12px); }
+  .desktop-window[data-viewing] #panel-photos { padding: 8px 8px 8px; }
   .panel { padding: 23px 20px 17px; }
   .panel-heading { margin-bottom: 21px; align-items: flex-start; }
   .panel-heading .item-count { padding-top: 2px; }
@@ -252,8 +279,8 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   .project-title { font-size: 14px; }
   .project-description { font-size: 10px; }
   .project-arrow { font-size: 15px; }
-  .detail-caption { align-items: flex-start; }
-  .detail-caption h3 { font-size: 14px; }
+  .detail-caption p { display: none; }
+  .detail-nav .item-count { display: none; }
   .photo-arrows { gap: 5px; }
   .square-button { width: 30px; height: 32px; }
   .empty-folder { padding: 34px 24px 30px; }
@@ -280,7 +307,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .md-cursor { animation: none; }
-  .balance-progress > span { animation: none; width: 62%; }
+  .balance-spinner::after { animation: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
 
@@ -350,10 +377,6 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     </defs>
   </svg>
 
-  <header class="corner corner--intro">
-    <p>just a quieter corner<br>on the internet</p>
-    <span class="corner-rule" aria-hidden="true">—</span>
-  </header>
 
   <aside class="corner corner--place" aria-label="Location and local time">
     <p>prague, czechia</p>
@@ -397,7 +420,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
         <span>sunlight</span>
       </button>
     </div>
-    <p class="corner corner--thought">maintaining<br>work hike<br>balance<span class="balance-progress" aria-hidden="true"><span></span></span></p>
+    <p class="corner corner--thought">maintaining<br>work hike<br>balance <span class="balance-spinner" aria-hidden="true"></span></p>
   </footer>
 
   <dialog class="desktop-window" id="desktop-window" aria-labelledby="window-title">
@@ -541,9 +564,12 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
           </div>
         </div>
         <div id="photo-detail" hidden>
-          <div class="detail-toolbar"><button class="text-button" id="all-photos" type="button">← all photos</button><span id="photo-number" class="item-count">01 / 31</span></div>
+          <div class="detail-toolbar">
+            <button class="text-button" id="all-photos" type="button">← all photos</button>
+            <div class="detail-caption"><h3 id="photo-title"></h3><p id="photo-description"></p></div>
+            <div class="detail-nav"><span id="photo-number" class="item-count">01 / 31</span><div class="photo-arrows"><button class="square-button" id="previous-photo" type="button" aria-label="Previous photo">←</button><button class="square-button" id="next-photo" type="button" aria-label="Next photo">→</button></div></div>
+          </div>
           <div class="detail-image-wrap"><img id="detail-image" alt="" class="detail-image"></div>
-          <div class="detail-caption"><div><h3 id="photo-title"></h3><p id="photo-description"></p></div><div class="photo-arrows"><button class="square-button" id="previous-photo" type="button" aria-label="Previous photo">←</button><button class="square-button" id="next-photo" type="button" aria-label="Next photo">→</button></div></div>
         </div>
       </section>
 
@@ -878,6 +904,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     currentPhoto = null;
     $("#photo-grid-view").hidden = false;
     $("#photo-detail").hidden = true;
+    delete dialog.dataset.viewing;
     setWindowStatus(`${photos.length} photos · newest first`);
     windowBody.scrollTop = 0;
     if (restoreFocus && previous !== null) photoButtons[previous].focus();
@@ -890,6 +917,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     $("#window-title").textContent = name === "profile" ? "~ / profile.md" : `~ / ${name}`;
     $("#window-icon use").setAttribute("href", name === "profile" ? "#file-art" : "#folder-art");
     currentPhoto = null;
+    delete dialog.dataset.viewing;
     if (name === "photos") resetPhotoGrid();
     else setWindowStatus("1 file · markdown");
     folderButtons.forEach((button) => button.setAttribute("aria-expanded", String(button.dataset.open === name)));
@@ -909,7 +937,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     $("#photo-number").textContent = `${String(currentPhoto + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
     $("#photo-grid-view").hidden = true;
     $("#photo-detail").hidden = false;
-    setWindowStatus("← → to browse");
+    dialog.dataset.viewing = "";
     windowBody.scrollTop = 0;
     if (moveFocus) $("#all-photos").focus();
   }
@@ -927,6 +955,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   dialog.addEventListener("close", () => {
     folderButtons.forEach((button) => button.setAttribute("aria-expanded", "false"));
     currentPhoto = null;
+    delete dialog.dataset.viewing;
   });
   dialog.addEventListener("cancel", (event) => {
     // Escape steps back inside a folder before closing the desktop window.
