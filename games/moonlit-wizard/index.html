@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Moonlit Wizard</title>
+  <link rel="icon" href="../../favicon.ico">
+  <style>
+    :root { --bg: #07061a; --ink: #f3ecd2; --edge: #3a3170; --edge-on: #58d7ff; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); overflow: hidden; }
+    body { display: grid; place-items: center; height: 100dvh; touch-action: none; -webkit-user-select: none; user-select: none; }
+    #screen { display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #0a0920; }
+    .pad { position: fixed; bottom: max(16px, env(safe-area-inset-bottom)); display: none; gap: 12px; }
+    .pad.left { left: 16px; }
+    .pad.right { right: 16px; }
+    .pad button {
+      width: 64px; height: 64px; border-radius: 12px; border: 3px solid var(--edge);
+      background: rgba(20, 16, 50, .55); color: var(--ink);
+      font: 700 13px/1 ui-monospace, Menlo, monospace; letter-spacing: .08em; touch-action: none;
+    }
+    .pad.right { flex-wrap: wrap; justify-content: flex-end; width: 140px; }
+    .spells { display: flex; gap: 8px; width: 100%; justify-content: flex-end; }
+    .pad button.sm { width: 40px; height: 40px; }
+    .pad button.on { border-color: var(--edge-on); background: rgba(88, 215, 255, .18); }
+    .pause-btn { position: fixed; top: max(12px, env(safe-area-inset-top)); right: 12px; width: 44px; height: 44px; display: none; border-radius: 10px; border: 3px solid var(--edge); background: rgba(20, 16, 50, .55); color: var(--ink); font: 700 14px/1 ui-monospace, Menlo, monospace; touch-action: none; }
+    .pause-btn.on { border-color: var(--edge-on); }
+    @media (pointer: coarse) { .pad { display: flex; } .pause-btn { display: block; } }
+  </style>
+</head>
+<body>
+  <canvas id="screen" aria-label="Moonlit Wizard — pixelová skákačka"></canvas>
+  <button class="pause-btn" data-k="pause" aria-label="Pauza">II</button>
+  <div class="pad left">
+    <button data-k="left" aria-label="Doleva">◀</button>
+    <button data-k="right" aria-label="Doprava">▶</button>
+  </div>
+  <div class="pad right">
+    <div class="spells">
+      <button data-k="e" class="sm" aria-label="Zrcadlový štít (E)">E</button>
+      <button data-k="r" class="sm" aria-label="Moonfall (R)">R</button>
+    </div>
+    <button data-k="q" aria-label="Arkánové koule (Q)">ORB</button>
+    <button data-k="jump" aria-label="Skok">JUMP</button>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

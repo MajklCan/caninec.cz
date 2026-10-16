@@ -8,6 +8,9 @@ Michal's personal website. One static page (`index.html`, landscape art inlined)
 ## Photos
 New photos: resize to WebP with `magick <src> -auto-orient -strip -resize 1800x1800> -quality 80 photos/full/<YYYY-MM-DD_HH-MM>.webp` and a 560×700 cover crop into `photos/thumb/`. Always `-strip` (phone photos carry GPS). Captions are place (only when known) + month/year — no invented titles.
 
+## Games (`games/`)
+Snapshots of Michal's browser games from `~/Documents/GAMES/<game>/` (static, no build). Moonlit Wizard: copy `index.html` + `src/*.js` into `games/moonlit-wizard/` (keep the added favicon line in its `index.html`), then deploy. The copy does not update itself — re-sync when the game changes. Thumbnail = a real 256×144 gameplay frame captured through the game's `window.__GAME__` QA hook (`games/moonlit-wizard.png`).
+
 ## Nasazení do produkce
 - **Prerekvizity:** změny commitnuté a ověřené na localhostu; feature práce na `feature/<slug>`.
 - **Nasazení:** `git checkout main && git merge --ff-only feature/<slug> && git push origin main` (push jako účet `MajklCan`). GitHub Pages (legacy build z `main`, `/`) nasadí sám během ~1 min.

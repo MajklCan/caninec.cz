@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ede8d7">
-  <meta name="description" content="Michal Caninec, personal website. Photos, a short profile and LinkedIn.">
+  <meta name="description" content="Michal Caninec, personal website. Photos, games, a short profile and LinkedIn.">
   <title>Michal Caninec - personal website</title>
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/png" href="icons/favicon-32.png" sizes="32x32">
@@ -139,6 +139,17 @@ body.is-still .balance-spinner::after { animation-play-state: paused; }
 .desktop-window[data-folder="profile"] { width: min(600px, calc(100vw - 72px)); }
 .desktop-window[data-folder="photos"] { width: min(1040px, calc(100vw - 72px)); max-height: calc(100dvh - 48px); }
 #panel-photos { padding: 14px 14px 12px; }
+.desktop-window[data-folder="games"] { width: min(640px, calc(100vw - 72px)); }
+#panel-games { padding: 16px 16px 14px; }
+.game-list { display: grid; gap: 12px; }
+.game-card { display: flex; align-items: center; gap: 18px; padding: 10px; border: 1px solid #d5d8c5; border-radius: 2px; background: #faf7ed; color: inherit; text-decoration: none; transition: transform 180ms, border-color 180ms; }
+.game-card:hover { transform: translateY(-2px) rotate(-.4deg); border-color: #97aa83; }
+.game-card:focus-visible { outline: 2px dashed #3e5945; outline-offset: 4px; }
+.game-thumb { flex-shrink: 0; width: 256px; aspect-ratio: 16 / 9; overflow: hidden; background: #0a0920; }
+.game-thumb img { display: block; width: 100%; height: 100%; image-rendering: pixelated; }
+.game-copy { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.game-title { font-size: 15px; letter-spacing: -.3px; }
+.game-meta { color: #79816c; font-size: 10px; line-height: 1.6; }
 .desktop-window[data-viewing] { width: calc(100vw - 24px); height: calc(100dvh - 24px); max-height: none; }
 .desktop-window[data-viewing]::backdrop { background: #0c140fc7; backdrop-filter: blur(14px) saturate(.85); -webkit-backdrop-filter: blur(14px) saturate(.85); }
 .desktop-window[data-viewing] .window-body { display: flex; flex: 1; flex-direction: column; overflow: hidden; }
@@ -259,7 +270,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   .light-toggle svg { width: 12px; height: 12px; }
   .motion-toggle { font-size: 9px; gap: 6px; }
   .corner--thought { bottom: max(23px, env(safe-area-inset-bottom)); right: 23px; font-size: 9px; }
-  .desktop-window, .desktop-window[data-folder="profile"], .desktop-window[data-folder="photos"] { width: calc(100vw - 32px); max-height: calc(100dvh - 46px); }
+  .desktop-window, .desktop-window[data-folder="profile"], .desktop-window[data-folder="photos"], .desktop-window[data-folder="games"] { width: calc(100vw - 32px); max-height: calc(100dvh - 46px); }
   .desktop-window[data-viewing] { width: calc(100vw - 12px); height: calc(100dvh - 12px); }
   .desktop-window[data-viewing] #panel-photos { padding: 8px 8px 8px; }
   .panel { padding: 23px 20px 17px; }
@@ -287,6 +298,8 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   .square-button { width: 30px; height: 32px; }
   .empty-folder { padding: 34px 24px 30px; }
   .md-doc { padding: 24px 20px 20px; }
+  .game-card { flex-direction: column; align-items: stretch; gap: 10px; }
+  .game-thumb { width: 100%; }
 }
 @media (max-width: 380px) {
   .corner--intro { left: 18px; }
@@ -305,7 +318,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   .folders { top: 46%; }
   .folder { min-height: 89px; }
   .folder-icon { width: 58px; height: 49px; }
-  .desktop-window, .desktop-window[data-folder="profile"], .desktop-window[data-folder="photos"] { max-height: calc(100dvh - 30px); }
+  .desktop-window, .desktop-window[data-folder="profile"], .desktop-window[data-folder="photos"], .desktop-window[data-folder="games"] { max-height: calc(100dvh - 30px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .md-cursor { animation: none; }
@@ -393,6 +406,11 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
         <span class="folder-glow" aria-hidden="true"></span>
         <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#folder-art"/></svg>
         <span class="folder-label">photos</span>
+      </button>
+      <button class="folder" type="button" data-open="games" aria-haspopup="dialog" aria-controls="desktop-window">
+        <span class="folder-glow" aria-hidden="true"></span>
+        <svg class="folder-icon" width="72" height="60" aria-hidden="true"><use href="#folder-art"/></svg>
+        <span class="folder-label">games</span>
       </button>
       <button class="folder" type="button" data-open="profile" aria-haspopup="dialog" aria-controls="desktop-window">
         <span class="folder-glow" aria-hidden="true"></span>
@@ -588,6 +606,19 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
             <div class="detail-nav"><span id="photo-number" class="item-count">01 / 35</span><div class="photo-arrows"><button class="square-button" id="previous-photo" type="button" aria-label="Previous photo">←</button><button class="square-button" id="next-photo" type="button" aria-label="Next photo">→</button></div></div>
           </div>
           <div class="detail-image-wrap"><img id="detail-image" alt="" class="detail-image"></div>
+        </div>
+      </section>
+
+      <section id="panel-games" class="panel" aria-label="Games" hidden>
+        <div class="game-list">
+          <a class="game-card" href="games/moonlit-wizard/">
+            <span class="game-thumb"><img src="games/moonlit-wizard.png" alt="Moonlit Wizard gameplay: a pixel wizard casting an orb on the Moon, with Earth in the sky." width="256" height="144"></span>
+            <span class="game-copy">
+              <span class="game-title">Moonlit Wizard <span class="link-arrow" aria-hidden="true">↗</span></span>
+              <span class="game-meta">pixel platformer · 6 heroes · 6 levels + duel</span>
+              <span class="game-meta">keyboard · gamepad · touch</span>
+            </span>
+          </a>
         </div>
       </section>
 
@@ -929,7 +960,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
   }
 
   function openFolder(name) {
-    if (!["photos", "profile"].includes(name)) return;
+    if (!["photos", "games", "profile"].includes(name)) return;
     panels.forEach((panel) => { panel.hidden = panel.id !== `panel-${name}`; });
     dialog.dataset.folder = name;
     $("#window-title").textContent = name === "profile" ? "~ / profile.md" : `~ / ${name}`;
@@ -937,6 +968,7 @@ a.folder:focus-visible { outline: 2px dashed #3e5945; outline-offset: 5px; }
     currentPhoto = null;
     delete dialog.dataset.viewing;
     if (name === "photos") resetPhotoGrid();
+    else if (name === "games") setWindowStatus("1 game · plays in the browser");
     else setWindowStatus("1 file · markdown");
     folderButtons.forEach((button) => button.setAttribute("aria-expanded", String(button.dataset.open === name)));
     pointer = { x: 0, y: 0 };
